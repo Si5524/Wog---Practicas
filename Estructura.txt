@@ -1,0 +1,103 @@
+Formatos para buenas practicas 
+
+	Formatos: 
+	
+		PascalCase:
+		
+			- Descripción: En PascalCase, cada palabra en el nombre comienza con una letra mayúscula, y no se utiliza ningún espacio o carácter especial para separar las palabras.
+			- Uso en Java: Se utiliza para los nombres de clases e interfaces.
+		
+		camelCase:
+		
+			- Descripción: En camelCase, la primera palabra comienza con una letra minúscula, y cada palabra subsiguiente inicia con una letra mayúscula, sin espacios ni caracteres especiales.
+			- Uso en Java: Se usa para los nombres de variables, métodos y parámetros de métodos.
+		
+		lowercase.with.dots
+		
+			- Descripción: Este formato utiliza solo letras minúsculas y separa cada palabra con un punto (.).
+			- Uso en Java: Es el estándar para los nombres de paquetes.
+			
+
+		UPPER_SNAKE_CASE:
+			- Descripción: En UPPER_SNAKE_CASE, todas las letras están en mayúsculas y las palabras se separan por guiones bajos (_).
+			Uso en Java: Se usa para los nombres de constantes (public static final) y a veces en enum.
+	
+Variables: formato camelCase
+
+	- Usar nombres que reflejen el proposito de la variable. Envitar nombres genereicos como data, temp o value, a menos que su proposito sea obvio en el contexto
+	- Usar singular para valores unicos order, customerName
+	- Usar plural para colecciones - arreglos - listas, conjuntos y mapas, orders. customerList, productMap
+
+	Constantes: formato UPPER_SNAKE_CASE
+	
+	- usar final y definir las variable en mayusculas y separarlas por un _, MAX_SIZE, DEFAULT_TIMEOUT
+
+Metodos: formato camelCase
+
+	- El nombre del metodo debe de ser verbos o frases de accion que describan la funcionalidad, getCustomer, calculateTotal
+	- Evitar nombre ambiguos(); el nombre debe describir claramente que hace el metodo
+	- Usar singular si el metodo no devuelve una lista, arreglo o coleccion
+	- Usar plural si el metodo devuelve una lista, arreglo o coleccion
+	Ejemplos: Singular(proccessPayment, findUserById, calculateDiscount) Plural(proccessPayments, findUsers, calculateAmounts)
+	
+	#Parametros de metodos/Atributos - formato camelCase: 
+		
+		- Los nombres de los parametros deben indicar claramente el tipode dato que representaran y su proposito en el metodo
+		- En casos donde peda haber confusion, agregar prefijos descriptivos (customerId) en lugar de id, orderAmount en lugar de amount
+		- Evitar parametro genericos como obj, val; Usar nombres que hagan que el codigo sea autodescriptivo
+		- Ejemplo: customerId, orderDate, productList
+		
+	#Prefijos descriptivos:
+	
+		- En algunos casos, puedes usar prefijos que describan el tipo de accion que realiza el metodo, como is, has, can - especialmente en metodos que devuelvan booleanos
+		- Ejemplo: 
+			
+			- isAvailable() - Verificar si algo esta disponible
+			- hasPermission() - Verificar si se tiene permiso
+			- canProcessPayment() - Verificar si se puede procesar un pago
+			
+		
+Clases: formato PascalCase
+	
+	- El nombre de la clase debe de ser sustantivo que describa claramente lo que representa(User, Oder, Invoice)
+	- Definir el nombre del a clase siempre en singular - Nunca en plural
+
+Interface: formato PascalCase
+
+	- Deben de expresar un comportamiento, generalmente adjetivos o systantivos, que sugieran una capacidad o rol(Readable, Runnable)
+	- No usar bajo ninguna circunstancia el prefijo I(IUserService) porque rompe la consistencia de nombrado
+	- Ejemplso de buen uso: Repository, Serializable, Comparable
+	
+Repositorios o Dao(Data access object): formato PascalCase
+
+	- Nombrar la clase terminando en Repository si es un repositorio o terminando en Dao si es un Dao. Esto ayuda a identificar que se trata de una clase que maneja acceso a datos (UserRepository, ProductDao)
+	- Siempre nombrar en singular, cambiar Repository o Dao dependiendo el caso
+	- Ejemplos: OrderRepository, InvoiceDao, ProductRepository
+
+Modelos/Entidades: formato PascalCase
+
+	- Representan una unica instanca del objeto, por lo que deben estar en singular (User, Order, Product)
+	- Nombrar el modelo o entidad de la misma forma o que sea comun en la base de datos(Employee, InvoiceDetail)
+	Ejemplos: Customer, OrderItem, PaymentTransaction
+
+Paquetes: lowercase.with.dots
+
+	- Usar todo en minuscula y sin caracteres especiales
+	- Usar el nombre al reves seguido de la organizacion o proyecto, luego modulos especificos(com.company.project.service)
+	- Organizar los paquetes segun las capas de la aplicacion (Controller, service, repository, model, config)
+	Ejemplos: com.example.ecommerce.repository, com.bankingsystem.account.service.
+
+Enumeraciones(Enums) - formato PascalCase: 
+	
+	- Usar el formato PascalCase para el nombre y el enum y mayusculas para las constantes dentro del enum
+	- Los nombres de las enumeraciones son en singular ya que represnetan una sola entidad de un grupo de valores posibles
+	- Descriptivos Usar nombres de enum que describan el grupo de constantes que contiene, por ejemplo, OrderStatus
+
+Streams y Lambdas: 
+	-  Si usas lambdas, asegúrate de dar nombres claros a los parámetros, evitando nombres genéricos como x o y a menos que sea obvio en el contexto.
+	- Ejemplo: 
+		
+		List<Customer> sortedCustomers = customers.stream()
+			.sorted(Comparator.comparing(Customer::getLastName))
+			.collect(Collectors.toList());
+			

@@ -1,0 +1,13 @@
+
+
+repo: http://git.wog.cloud/
+
+FTP para cargue de archivos
+Función Lambda
+GIT: http://git.wog.cloud/wog-cn/sftp-finantial-lambda.git
+branch: desarrollo
+
+--------------------------------------------------------------------------------------------------------------------
+bucket - Java
+
+
